@@ -17,12 +17,18 @@ var transfer = function(word){
   }
 }
 
+var breaking = function(sentence){
+  var words = sentence.match(/\b(\w+)\b/g);
+  return words.map(function(word){
+    return transfer(word);
+  }).join(" ");
+}
 // user interface logic
 $(document).ready(function() {
   $("form#pig-latin").submit(function(event) {
     event.preventDefault();
     var words = $("input#words").val();
-    var result = transfer(words);
+    var result = breaking(words);
 
     $(".output").text(result);
     $("#result").show();
